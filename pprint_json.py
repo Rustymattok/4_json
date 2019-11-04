@@ -11,8 +11,8 @@ def load_data(filepath):
 # 'This method return string in valid json format with good visibility.  '
 
 
-def pretty_print_json(data):
-    json_shops = json.dumps(data, ensure_ascii=False, indent=4)
+def pretty_print_json(alcoshops_list):
+    json_shops = json.dumps(alcoshops_list, ensure_ascii=False, indent=4)
     return json_shops
 
 
