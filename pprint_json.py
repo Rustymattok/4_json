@@ -1,20 +1,30 @@
 import json
 
-# 'This method load json and convert it to dictionary String format.  '
-
 
 def load_data(filepath):
-    file_json = open(filepath)
-    alcoshops_list = json.load(file_json)
-    return alcoshops_list
+    """
+    Open json_file and convert it to the json_list.
+    """
+    try:
+        with open(filepath) as f:
+            json_string = f.read()
+            json_list = json.loads(json_string)
+    except FileNotFoundError:
+        return 'not correct way for File'
+    except Exception:
+        return 'not correct format'
+    return json_list
 
-# 'This method return string in valid json format with good visibility.  '
 
-
-def pretty_print_json(alcoshops_list):
-    json_shops = json.dumps(alcoshops_list, ensure_ascii=False, indent=4)
-    return json_shops
+def pretty_print_json(json_list):
+    """
+    Convert json_list to readable format of json.
+    """
+    json_format = json.dumps(json_list, ensure_ascii=False, indent=4)
+    return json_format
 
 
 if __name__ == '__main__':
-    print(pretty_print_json(load_data("./data_file.json")))
+    filepath = input('enter file way: ')
+    result = pretty_print_json(load_data(filepath))
+    print(result)
