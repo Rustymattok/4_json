@@ -4,16 +4,16 @@ This script convert json string file to json format with good visibility
 
 # Quick start
 
-The file which will convert located in the same directory of current script
-
 Example of script launch on Linux, Python 3.5:
 
 ```bash
 
 $ python pprint_json.py <path to file>
+enter file way: "<path to file>"
+
 ```
 # The sample of result script
-```
+```bash
 [
     {
         "Id": "79742784-9ef3-4543-bc98-a219a8903c18",
