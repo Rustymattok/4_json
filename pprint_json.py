@@ -4,25 +4,16 @@ import argparse
 
 
 def load_data(data_file):
-    """
-    Take data of file and convert it to json.
-    """
     convert_json = json.loads(data_file)
     return convert_json
 
 
 def pretty_print_json(json_list):
-    """
-    Make current json more structure from view.
-    """
     json_visual = json.dumps(json_list, ensure_ascii=False, indent=4)
     return json_visual
 
 
 def create_parser():
-    """
-    Prepare commands in console."
-    """
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='command')
     input_parser = subparsers.add_parser('input',
