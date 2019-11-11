@@ -8,8 +8,7 @@ Example of script launch on Linux, Python 3.5:
 
 ```bash
 
-$ python pprint_json.py <path to file>
-enter file way: "<path to file>"
+$ python pprint_json.py -f <path to file>
 
 ```
 # The sample of result script
