@@ -1,12 +1,14 @@
 import json
 import argparse
+import os
 
 
 def load_data(file_path):
-    with open(file_path) as f:
-        data_file = f.read()
-        json_code = json.loads(data_file)
-    return json_code
+    if not os.path.exists(file_path):
+        return None
+    with open(file_path, 'r') as file_handler:
+        json_code = json.load(file_handler)
+        return json_code
 
 
 def pretty_print_json(json_code):
@@ -25,12 +27,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.file is None:
         print("no Data for work")
-    elif args.file:
+    else:
         try:
             print(pretty_print_json(load_data(args.file)))
-        except IOError:
-            print("not available file")
         except ValueError:
             print("not correct format")
-    else:
-        print("smth is not OK")
