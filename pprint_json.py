@@ -1,48 +1,36 @@
 import json
-import sys
 import argparse
 
 
-def load_data(data_file):
-    convert_json = json.loads(data_file)
-    return convert_json
+def load_data(file_path):
+    with open(file_path) as f:
+        data_file = f.read()
+        json_code = json.loads(data_file)
+    return json_code
 
 
-def pretty_print_json(json_list):
-    json_visual = json.dumps(json_list, ensure_ascii=False, indent=4)
-    return json_visual
+def pretty_print_json(json_code):
+    json_readable_user = json.dumps(json_code, ensure_ascii=False, indent=4)
+    return json_readable_user
 
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(dest='command')
-    input_parser = subparsers.add_parser('input',
-                                         help="for input file")
-    input_parser.add_argument('-i',  help="command for input file")
-    input_parser.add_argument("file", type=argparse.FileType(),
-                              help="the file for convert")
-    run_parser = subparsers.add_parser('run', help="for test file")
-    run_parser.add_argument("-r", type=argparse.FileType(),
-                            default='test.json',
-                            help="command for base file")
+    parser.add_argument('-f', '--file', type=str, help="command - input file")
     return parser
 
 
 if __name__ == '__main__':
     parser = create_parser()
-    namespace = parser.parse_args(sys.argv[1:])
-    if namespace.command == "input":
+    args = parser.parse_args()
+    if args.file is None:
+        print("no Data for work")
+    elif args.file:
         try:
-            answer = namespace.file.read()
-            print(answer)
-            print(pretty_print_json(load_data(answer)))
+            print(pretty_print_json(load_data(args.file)))
+        except IOError:
+            print("not available file")
         except ValueError:
-            print("error syntax of file")
-            sys.exit()
-    elif namespace.command == "run":
-        with open('test.json') as f:
-            json_string = f.read()
-            answer = json.loads(json_string)
-        print(pretty_print_json(answer))
+            print("not correct format")
     else:
-        print("smth wrong")
+        print("smth is not OK")
