@@ -1,6 +1,7 @@
 # Prettify JSON
 
-This script convert json string file to json format with good visibility 
+This script convert json string file to json format with good visibility.
+It has two commands input and run
 
 # Quick start
 
@@ -8,8 +9,13 @@ Example of script launch on Linux, Python 3.5:
 
 ```bash
 
-$ python pprint_json.py <path to file>
-enter file way: "<path to file>"
+$ python pprint_json.py input <path to file>
+
+```
+To conver base file use command run only.
+```bash
+
+$ python pprint_json.py run
 
 ```
 # The sample of result script
